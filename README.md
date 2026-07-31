@@ -32,7 +32,7 @@ Completed orders are directly tied to revenue for this Business. Product and sal
 ## Results and Business Recommendations:
 1. Pattern held consistently across the dataset: overall conversion lands around 33–35% in every version.
 
-2. **Data suggested:**
+2. Data suggested:
 - Sample & synthetic data pointed to **PaymentWidgetOpened→Entered** as the top leak (~33% drop) — this turned out to be a healthier step in the real data (only ~20% drop).
 - The **real** top leaks are **PaymentSubmitted→Success (27% drop)** and **PaymentSuccess→Complete (37% drop)** — the latter is especially notable because payment already succeeded at that point, pointing to a technical/confirmation bug (webhook, status-sync, or redirect failure) rather than a user-hesitation problem.
 
@@ -40,7 +40,7 @@ Completed orders are directly tied to revenue for this Business. Product and sal
 ![Data Model](https://github.com/hoomanv3xo/Payment-Funnel-Analysis-SaaS_FinTech/blob/main/funnel_chart_live.png)
 
 ## Next Steps:
-1. **Investigate the Submitted→Success gap as a payments-operations issue — likely causes include card declines, gateway timeouts, or fraud/3DS verification failures.
-2. **Treat Success→Complete as an engineering bug, not a UX fix — payment already succeeds at this point, so the order simply isn't finalizing.
-3. **Deprioritize copy changes to the payment-entry form — that step performs well in the real data, even though it appeared to be the top issue in the smaller sample.
-4. **Handle post-purchase churn as a separate workstream from the order funnel — since "not useful" outranks "expensive" as a cancelation reason, this points to an onboarding/activation gap rather than a pricing problem.
+1. Investigate the Submitted→Success gap as a payments-operations issue — likely causes include card declines, gateway timeouts, or fraud/3DS verification failures.
+2. Treat Success→Complete as an engineering bug, not a UX fix — payment already succeeds at this point, so the order simply isn't finalizing.
+3. Deprioritize copy changes to the payment-entry form — that step performs well in the real data, even though it appeared to be the top issue in the smaller sample.
+4. Handle post-purchase churn as a separate workstream from the order funnel — since "not useful" outranks "expensive" as a cancelation reason, this points to an onboarding/activation gap rather than a pricing problem.
