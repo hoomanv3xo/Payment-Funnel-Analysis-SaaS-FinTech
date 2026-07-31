@@ -33,7 +33,7 @@ Completed orders are directly tied to revenue for this Business. Product and sal
 - Sample & synthetic data pointed to **PaymentWidgetOpened→Entered** as the top leak (~33% drop) — this turned out to be a healthier step in the real data (only ~20% drop).
 - The **real** top leaks are **PaymentSubmitted→Success (27% drop)** and **PaymentSuccess→Complete (37% drop)** — the latter is especially notable because payment already succeeded at that point, pointing to a technical/confirmation bug (webhook, status-sync, or redirect failure) rather than a user-hesitation problem.
 
-![Data Model]()
+![Data Model](https://github.com/hoomanv3xo/Payment-Funnel-Analysis-SaaS_FinTech/blob/main/dropoff_chart_live.png)
 ![Data Model](https://github.com/hoomanvahdat0-DataAnalysis/Payment_Funnel_Analysis_SaaS_FinTech/blob/main/image2.png)
 ![Data Model](https://github.com/hoomanvahdat0-DataAnalysis/Payment_Funnel_Analysis_SaaS_FinTech/blob/main/image3.png)
 
