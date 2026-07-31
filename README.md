@@ -1,7 +1,7 @@
 # Payment-Funnel-Analysis-SaaS-FinTech
 
 ## Executive Summary:
-Order conversion has been low at our SaaS company, and we set out to find out why. We tracked every order from the moment a customer starts checkout to the moment they finish, and found that most of the lost revenue isn't happening where we expected — it's not customers giving up while entering payment details. It's happening after payment goes through, when a large share of orders never get marked as complete.
+Order conversion has been low at our SaaS company, and we set out to find out why. I tracked every order from the moment a customer starts checkout to the moment they finish, and found that most of the lost revenue isn't happening where we expected — it's not customers giving up while entering payment details. It's happening after payment goes through, when a large share of orders never get marked as complete.
 
 Recommendations:
 
