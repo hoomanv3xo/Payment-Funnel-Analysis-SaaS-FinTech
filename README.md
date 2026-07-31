@@ -2,9 +2,7 @@
 
 ## Executive Summary:
 Order conversion has been low at our SaaS company, and we set out to find out why. I tracked every order from the moment a customer starts checkout to the moment they finish, and found that most of the lost revenue isn't happening where we expected — it's not customers giving up while entering payment details. It's happening after payment goes through, when a large share of orders never get marked as complete.
-
 Recommendations:
-
 1. Fix the "payment succeeded but order didn't finish" issue first — this looks like a technical bug, not a customer experience problem, and it's currently our biggest revenue leak.
 2. Look into failed or stuck payments — declined cards, timeouts, and fraud checks are causing a second significant drop.
 3. Hold off on rewriting the checkout screens — that step is actually working fine, so this effort is better spent elsewhere.
