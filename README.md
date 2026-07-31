@@ -38,6 +38,7 @@ Completed orders are directly tied to revenue for this Business. Product and sal
 
 ![Data Model](https://github.com/hoomanv3xo/Payment-Funnel-Analysis-SaaS_FinTech/blob/main/dropoff_chart_live.png)
 ![Data Model](https://github.com/hoomanv3xo/Payment-Funnel-Analysis-SaaS_FinTech/blob/main/funnel_chart_live.png)
+![Data Model](https://hoomanv3xo.github.io/Payment-Funnel-Analysis-SaaS_FinTech/order_funnel_dashboard.html)
 
 ## Next Steps:
 1. Investigate the Submitted→Success gap as a payments-operations issue — likely causes include card declines, gateway timeouts, or fraud/3DS verification failures.
