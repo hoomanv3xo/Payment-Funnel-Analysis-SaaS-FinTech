@@ -27,7 +27,7 @@ Completed orders are directly tied to revenue for this Business. Product and sal
 7. Python
 
 ## Results and Business Recommendations:
-1. **Pattern held consistently across the 1,000-row synthetic dataset: ** overall conversion lands around 33–35% in every version.
+1. **Pattern held consistently across the dataset: ** overall conversion lands around 33–35% in every version.
 
 2. **Synthetic data suggested:**
 - Sample & synthetic data pointed to **PaymentWidgetOpened→Entered** as the top leak (~33% drop) — this turned out to be a healthier step in the real data (only ~20% drop).
