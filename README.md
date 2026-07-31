@@ -2,10 +2,10 @@
 
 ## Executive Summary:
 Fewer customers are completing their orders than we'd like to see, and we set out to find out why. I tracked every order from the moment a customer starts checkout to the moment they finish, and found that most of the lost revenue isn't happening where we expected — it's not customers giving up while entering payment details. It's happening after payment goes through, when a large share of orders never get marked as complete. I Recommend these few adjustments:
-1. Fix the "payment succeeded but order didn't finish" issue first — this looks like a technical bug, not a customer experience problem, and it's currently our biggest revenue leak.
-2. Look into failed or stuck payments — declined cards, timeouts, and fraud checks are causing a second significant drop.
-3. Hold off on rewriting the checkout screens — that step is actually working fine, so this effort is better spent elsewhere.
-4. Handle customer cancelations as a separate project — customers are canceling because they don't find the product useful, not because of price, so retention efforts should focus on onboarding. rather than discounts
+1. Prioritize the "payment succeeded but order didn't finalize" bug — this is a technical issue, not a customer experience gap, and it's responsible for our largest single revenue loss.
+2. Address failed and stuck payments — declined cards, timeouts, and fraud checks are driving a second major drop-off point.
+3. Pause any checkout screen redesign — that step is already performing well, so resources are better directed elsewhere.
+4. Manage cancelations as a separate initiative — customers are leaving because they don't find enough value, not because of cost, so retention efforts should focus on onboarding rather than pricing or discounts.
    
 ## Business Problem:
 Completed orders are directly tied to revenue for this Business. Product and sales stakeholders noticed a lower-than-expected conversion rate (users who start an order vs. users who complete it). This project identifies **where** in the workflow users fall out and **which fixes** would recover the most revenue.
