@@ -1,22 +1,22 @@
 # Payment-Funnel-Analysis-SaaS-FinTech
 
 ## Executive Summary:
-A significant number of subscriptions remain unpaid which indicates potential friction in the online payment process and has largely impacted revenue negatively. This analysis identifies pain points within the payment portal and provide actionable recommendations to improve the conversion rate of successful payments using SQL and a data science notebook to build a product funnel analysis.
+Analysis of where users drop out of the order/subscription workflow between opening the payment widget and completing an order, with SQL extraction, Python funnel modeling + revenue simulation, and
+an HTML dashboard.
 
 ## Business Problem:
-The finance team has noticed that many subscriptions haven't been paid for, so they've reached out to the product team to understand if there are any frictions points in the online payment portal so they can increase the conversion rate (% of subscriptions that are successfully converting to a paid subscription).
+Completed orders are directly tied to revenue for this Business. Product and sales stakeholders noticed a lower-than-expected conversion rate (users who start an order vs. users who complete it). This project identifies **where** in the workflow users fall out and **which fixes** would recover the most revenue.
 
 ![Data Model](https://github.com/hoomanvahdat0-DataAnalysis/Payment_Funnel_Analysis_SaaS_FinTech/blob/main/data%20model.png)
 ![Data Model](https://github.com/hoomanvahdat0-DataAnalysis/Payment_Funnel_Analysis_SaaS_FinTech/blob/main/payment%20funnel%20stages.png)
 
 ## Methodology:
-1. EDA  Exploratory Data Analysis
-2. Product Funnel Analysis
-3. Data Visualization
-   
-EDA shows
-  
+1. EDA
+2. **SQL** — extracts, cleans, and transforms raw order/payment/customer data into a funnel-ready fact table.
+3. **Python** — builds the stage-by-stage funnel, visualizes drop-off, and runs a Monte Carlo simulation estimating the revenue impact of improving conversion at each step.
+4. **Dashboard** — an HTML dashboard (no Power BI required) presenting the funnel, drop-off, revenue-at-risk, and cancelation reasons in one view.
 
+   
 ## Skills:
 1. SQL: CTEs, CASE, Union, View creation
 2. Data Visualization
