@@ -29,7 +29,7 @@ Completed orders are directly tied to revenue for this Business. Product and sal
 ## Results and Business Recommendations:
 1. **Pattern held consistently across the dataset: ** overall conversion lands around 33–35% in every version.
 
-2. **Synthetic data suggested:**
+2. **Data suggested:**
 - Sample & synthetic data pointed to **PaymentWidgetOpened→Entered** as the top leak (~33% drop) — this turned out to be a healthier step in the real data (only ~20% drop).
 - The **real** top leaks are **PaymentSubmitted→Success (27% drop)** and **PaymentSuccess→Complete (37% drop)** — the latter is especially notable because payment already succeeded at that point, pointing to a technical/confirmation bug (webhook, status-sync, or redirect failure) rather than a user-hesitation problem.
 
