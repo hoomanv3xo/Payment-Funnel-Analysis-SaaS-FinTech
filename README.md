@@ -26,18 +26,19 @@ Completed orders are directly tied to revenue for this Business. Product and sal
 6. Snowflake Data warehouse
 7. Python
 
-##    Business Recommendations:
-1. Simplify the payment entry experience by adding options like Apple Pay, Google Pay, or other methods that eliminate the need to manually enter credit card details each time. This can help reduce user errors caused by incorrect payment information.
+## Results and Business Recommendations:
+1. **Pattern held consistently across the 1,000-row synthetic dataset: ** overall conversion lands around 33–35% in every version.
 
-2. Connect with the third-party payment processor to investigate the source of errors on their end and develop a plan to minimize these issues moving forward.
-
-3. Collaborate with the product manager to increase the number of subscriptions that actually reach and engage with the payment portal. Since many users drop off before even attempting payment, this represents a significant loss early in the funnel. Consider strategies like payment reminders or outreach from customer service agents to encourage completion.
+2. **Synthetic data suggested:**
+- Sample & synthetic data pointed to **PaymentWidgetOpened→Entered** as the top leak (~33% drop) — this turned out to be a healthier step in the real data (only ~20% drop).
+- The **real** top leaks are **PaymentSubmitted→Success (27% drop)** and **PaymentSuccess→Complete (37% drop)** — the latter is especially notable because payment already succeeded at that point, pointing to a technical/confirmation bug (webhook, status-sync, or redirect failure) rather than a user-hesitation problem.
 
 ![Data Model](https://github.com/hoomanvahdat0-DataAnalysis/Payment_Funnel_Analysis_SaaS_FinTech/blob/main/image1.png)
 ![Data Model](https://github.com/hoomanvahdat0-DataAnalysis/Payment_Funnel_Analysis_SaaS_FinTech/blob/main/image2.png)
 ![Data Model](https://github.com/hoomanvahdat0-DataAnalysis/Payment_Funnel_Analysis_SaaS_FinTech/blob/main/image3.png)
 
 ## Next Steps:
-Dig deeper into the error breakdown to identify which issues occur most frequently, distinguishing between user-related errors and those originating from the vendor.
-
-Examine why many subscriptions never initiate the payment process. Determine whether this is due to internal process gaps or if customers are simply forgetting to complete the payment step.
+1. **Investigate Submitted→Success as a payments-ops issue** — card declines, gateway timeouts, fraud/3DS check failures.
+2. **Investigate Success→Complete as an engineering bug**, not a UX fix — payment succeeded but the order isn't finalizing.
+3. **Deprioritize payment-entry-form copy changes** — that step is healthy in the real data, despite looking like the top issue in the smaller sample.
+4. **Treat post-purchase churn as a separate workstream** from the order funnel — "not useful" outranks "expensive" as a cancelation reason, suggesting an onboarding/activation problem rather than a pricing one.
