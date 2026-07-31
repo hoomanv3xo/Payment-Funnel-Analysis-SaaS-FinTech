@@ -40,7 +40,7 @@ Completed orders are directly tied to revenue for this Business. Product and sal
 ![Data Model](https://github.com/hoomanv3xo/Payment-Funnel-Analysis-SaaS_FinTech/blob/main/funnel_chart_live.png)
 
 ## Next Steps:
-1. **Investigate Submitted→Success as a payments-ops issue** — card declines, gateway timeouts, fraud/3DS check failures.
-2. **Investigate Success→Complete as an engineering bug**, not a UX fix — payment succeeded but the order isn't finalizing.
-3. **Deprioritize payment-entry-form copy changes** — that step is healthy in the real data, despite looking like the top issue in the smaller sample.
-4. **Treat post-purchase churn as a separate workstream** from the order funnel — "not useful" outranks "expensive" as a cancelation reason, suggesting an onboarding/activation problem rather than a pricing one.
+1. **Investigate the Submitted→Success gap as a payments-operations issue — likely causes include card declines, gateway timeouts, or fraud/3DS verification failures.
+2. **Treat Success→Complete as an engineering bug, not a UX fix — payment already succeeds at this point, so the order simply isn't finalizing.
+3. **Deprioritize copy changes to the payment-entry form — that step performs well in the real data, even though it appeared to be the top issue in the smaller sample.
+4. **Handle post-purchase churn as a separate workstream from the order funnel — since "not useful" outranks "expensive" as a cancelation reason, this points to an onboarding/activation gap rather than a pricing problem.
