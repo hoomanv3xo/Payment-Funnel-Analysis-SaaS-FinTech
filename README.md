@@ -1,13 +1,15 @@
 # Payment-Funnel-Analysis-SaaS-FinTech
 
 ## Executive Summary:
-Order conversion has been low at our SaaS company, and we need to determine the root cause and potential solutions. Using SQL, Python, and an HTML dashboard, I extracted order status data and built a funnel tracking orders from payment initiation through completion. The largest revenue opportunities are at the payment-success-to-complete and submitted-to-success stages, not the initial entry step as smaller samples suggested. I recommend the product team:
+Order conversion has been low at our SaaS company, and we set out to find out why. We tracked every order from the moment a customer starts checkout to the moment they finish, and found that most of the lost revenue isn't happening where we expected — it's not customers giving up while entering payment details. It's happening after payment goes through, when a large share of orders never get marked as complete.
 
-1. Investigate the Success→Complete gap as an engineering bug, not a UX issue.
-2. Treat Submitted→Success as a payments-ops issue (declines, timeouts, fraud checks)
-3. Deprioritize entry-form copy changes, since that step performs well in real data.
-4. Address post-purchase cancelations separately, since "not useful" outranks "expensive" as a churn reason.
+Recommendations:
 
+1. Fix the "payment succeeded but order didn't finish" issue first — this looks like a technical bug, not a customer experience problem, and it's currently our biggest revenue leak.
+2. Look into failed or stuck payments — declined cards, timeouts, and fraud checks are causing a second significant drop.
+3. Hold off on rewriting the checkout screens — that step is actually working fine, so this effort is better spent elsewhere.
+4. Handle customer cancelations as a separate project — customers are canceling because they don't find the product useful, not because of price, so retention efforts should focus on onboarding. rather than discounts
+   
 ## Business Problem:
 Completed orders are directly tied to revenue for this Business. Product and sales stakeholders noticed a lower-than-expected conversion rate (users who start an order vs. users who complete it). This project identifies **where** in the workflow users fall out and **which fixes** would recover the most revenue.
 
