@@ -1,7 +1,7 @@
 # Payment-Funnel-Analysis-SaaS-FinTech
 
 ## Executive Summary:
-Order conversion has been low at our SaaS company, and we set out to find out why. I tracked every order from the moment a customer starts checkout to the moment they finish, and found that most of the lost revenue isn't happening where we expected — it's not customers giving up while entering payment details. It's happening after payment goes through, when a large share of orders never get marked as complete. I Recommend these few adjustments:
+Fewer customers are completing their orders than we'd like to see, and we set out to find out why. I tracked every order from the moment a customer starts checkout to the moment they finish, and found that most of the lost revenue isn't happening where we expected — it's not customers giving up while entering payment details. It's happening after payment goes through, when a large share of orders never get marked as complete. I Recommend these few adjustments:
 1. Fix the "payment succeeded but order didn't finish" issue first — this looks like a technical bug, not a customer experience problem, and it's currently our biggest revenue leak.
 2. Look into failed or stuck payments — declined cards, timeouts, and fraud checks are causing a second significant drop.
 3. Hold off on rewriting the checkout screens — that step is actually working fine, so this effort is better spent elsewhere.
@@ -14,7 +14,7 @@ Completed orders are directly tied to revenue for this Business. Product and sal
 ![Data Model](https://github.com/hoomanv3xo/Payment-Funnel-Analysis-SaaS_FinTech/blob/main/payment%20funnel%20stages.png)
 
 ## Methodology:
-1. EDA
+1. **EDA**
 2. **SQL** — extracts, cleans, and transforms raw order/payment/customer data into a funnel-ready fact table.
 3. **Python** — builds the stage-by-stage funnel, visualizes drop-off, and runs a Monte Carlo simulation estimating the revenue impact of improving conversion at each step.
 4. **Dashboard** — an HTML dashboard (no Power BI required) presenting the funnel, drop-off, revenue-at-risk, and cancelation reasons in one view.
