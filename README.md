@@ -3,10 +3,10 @@
 ## Executive Summary:
 Order conversion has been low at our SaaS company, and we need to determine the root cause and potential solutions. Using SQL, Python, and an HTML dashboard, I extracted order status data and built a funnel tracking orders from payment initiation through completion. The largest revenue opportunities are at the payment-success-to-complete and submitted-to-success stages, not the initial entry step as smaller samples suggested. I recommend the product team:
 
-**Investigate the Success→Complete gap as an engineering bug, not a UX issue
+**Investigate the Success→Complete gap as an engineering bug, not a UX issue.
 **Treat Submitted→Success as a payments-ops issue (declines, timeouts, fraud checks)
-**Deprioritize entry-form copy changes, since that step performs well in real data
-**Address post-purchase cancelations separately, since "not useful" outranks "expensive" as a churn reason
+**Deprioritize entry-form copy changes, since that step performs well in real data.
+**Address post-purchase cancelations separately, since "not useful" outranks "expensive" as a churn reason.
 
 ## Business Problem:
 Completed orders are directly tied to revenue for this Business. Product and sales stakeholders noticed a lower-than-expected conversion rate (users who start an order vs. users who complete it). This project identifies **where** in the workflow users fall out and **which fixes** would recover the most revenue.
