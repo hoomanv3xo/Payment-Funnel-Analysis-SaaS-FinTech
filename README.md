@@ -1,43 +1,95 @@
-# Payment-Funnel-Analysis-SaaS-FinTech
+# Payment Funnel Analysis: Finding and Fixing Unpaid Subscription Friction
 
-## Executive Summary:
-Fewer customers are completing their orders than we'd like to see, and we set out to find out why. I tracked every order from the moment a customer starts checkout to the moment they finish, and found that most of the lost revenue isn't happening where we expected — it's not customers giving up while entering payment details. It's happening after payment goes through, when a large share of orders never get marked as complete. I Recommend these few adjustments:
-1. Prioritize the "payment succeeded but order didn't finalize" bug — this is a technical issue, not a customer experience gap, and it's responsible for our largest single revenue loss.
-2. Address failed and stuck payments — declined cards, timeouts, and fraud checks are driving a second major drop-off point.
-3. Pause any checkout screen redesign — that step is already performing well, so resources are better directed elsewhere.
-4. Manage cancelations as a separate initiative — customers are leaving because they don't find enough value, not because of cost, so retention efforts should focus on onboarding rather than pricing or discounts.
-   
-## Business Problem:
-Completed orders are directly tied to revenue for this Business. Product and sales stakeholders noticed a lower-than-expected conversion rate (users who start an order vs. users who complete it). This project identifies **where** in the workflow users fall out and **which fixes** would recover the most revenue.
+## Executive Summary
 
-![Data Model](https://github.com/hoomanv3xo/Payment-Funnel-Analysis-SaaS_FinTech/blob/main/data%20model.png)
-![Data Model](https://github.com/hoomanv3xo/Payment-Funnel-Analysis-SaaS_FinTech/blob/main/payment%20funnel%20stages.png)
+This analysis looks at where customers drop out of the payment process. Only **8 of 12** customers who opened the payment widget entered payment details (66.7%), and only **4 reached `Complete`** (33.3%). The biggest drop happens before payment details are entered.
 
-## Methodology:
-1. **EDA**
-2. **SQL** — extracts, cleans, and transforms raw order/payment/customer data into a funnel-ready fact table.
-3. **Python** — builds the stage-by-stage funnel, visualizes drop-off, and runs a Monte Carlo simulation estimating the revenue impact of improving conversion at each step.
-4. **Dashboard** — an HTML dashboard (no Power BI required) presenting the funnel, drop-off, revenue-at-risk, and cancelation reasons in one view.
+There is also a problem after payment succeeds. **6 subscriptions recorded `PaymentSuccess`, but only 4 reached `Complete`**. This means 2 successful payments may not have been properly recorded internally.
 
-   
-## Skills:
-1. SQL: CTEs, CASE, Union, View creation
-2. Data Visualization
-3. Data Wrangling
-4. Data Cleaning
-5. Data Science Notebook
-6. Snowflake Data warehouse
-7. Python
+Unpaid subscriptions appear to be caused mainly by early payment abandonment/form friction, possible payment-provider errors, and internal reconciliation issues after successful payments. Of the subscriptions with known payment status, 14 of 26 are unpaid, representing $168,500 in revenue. Another 24 subscriptions have no payment status, so the actual unpaid amount may be higher.
 
-## Results and Business Recommendations:
-1. Pattern held consistently across the dataset: overall conversion lands around 33–35% in every version.
+## Business Problem
 
-2. Data suggested:
-- Sample & synthetic data pointed to **PaymentWidgetOpened→Entered** as the top leak (~33% drop) — this turned out to be a healthier step in the real data (only ~20% drop).
-- The **real** top leaks are **PaymentSubmitted→Success (27% drop)** and **PaymentSuccess→Complete (37% drop)** — the latter is especially notable because payment already succeeded at that point, pointing to a technical/confirmation bug (webhook, status-sync, or redirect failure) rather than a user-hesitation problem.
+Customers become converted only after completing payment. Unpaid subscriptions reduce revenue and lower the conversion rate.
 
-![Data Model](https://github.com/hoomanv3xo/Payment-Funnel-Analysis-SaaS_FinTech/blob/main/dropoff_chart_live.png)
-![Data Model](https://github.com/hoomanv3xo/Payment-Funnel-Analysis-SaaS_FinTech/blob/main/funnel_chart_live.png)
+The business needs to understand:
+
+* Where customers stop or fail.
+* Whether failures are customer or payment-provider related.
+* Which subscriptions need follow-up.
+* How much revenue is at risk.
+
+## Methodology
+
+`Complete` is used as the final conversion event because it confirms the payment was completed internally.
+
+| Milestone             | Subscriptions |   Rate |
+| --------------------- | ------------: | -----: |
+| Payment widget opened |            12 | 100.0% |
+| Payment entered       |             8 |  66.7% |
+| Payment submitted     |             7 |  58.3% |
+| Payment success       |             6 |  50.0% |
+| Complete              |             4 |  33.3% |
+
+For reporting, use `Subscription_ID` to track each customer journey and sort events by `Movement_Date`. Keep both the payment attempt history and the final subscription outcome.
+
+Do not treat status numbers as a simple ranking because customers can retry, move backward, or encounter errors at different stages.
+
+## Skills Demonstrated
+
+* **SQL:** CTEs, joins, CASE statements, aggregates
+* **Python:** Pandas, Matplotlib, NumPy, functions, funnel analysis, statistics
+
+## Results & Recommendations
+
+### 1. Improve the payment form experience
+
+**4 of 12** widget opens never reached `PaymentEntered`, making this the largest drop.
+
+Check:
+
+* Payment widget loading
+* Mobile experience
+* Session or authentication issues
+* Payment-method availability
+* Payment button reliability
+
+Add tracking for widget loading, failures, and form starts to identify the real cause.
+
+### 2. Fix successful-payment reconciliation
+
+**2 of 6** successful payments did not reach `Complete`.
+
+This could be caused by a webhook, system update, or similar issue. Create an alert when `PaymentSuccess` is not followed by `Complete` within 15 minutes, then automatically retry or send the case to operations.
+
+### 3. Investigate payment errors
+
+There were **5 error events**. Three happened after `PaymentSubmitted`, which may indicate payment-provider problems.
+
+However, the current data does not show whether errors came from the customer, payment provider, or internal system.
+
+Add error sources and response codes before assigning responsibility.
+
+### 4. Recover known unpaid revenue
+
+There are **14 known unpaid subscriptions worth $168,500**.
+
+Use different follow-up actions based on the customer's last stage:
+
+* **Before payment:** send a reminder and payment link.
+* **Form issues:** provide clearer validation and instructions.
+* **Payment-provider failure:** offer a retry.
+* **Payment success but not complete:** reconcile first before contacting the customer.
+
+## Next Steps
+
+1. Add `payment_attempt_id`, `error_source`, `error_code`, `vendor_transaction_id`, payment method, and reconciliation status.
+2. Track key events such as widget loaded, form started, validation failed, submit clicked, vendor response, and completion.
+3. Create alerts and a dashboard for stuck payments 
+
+![Data Model](https://github.com/hoomanv3xo/Payment-Funnel-Analysis-SaaS_FinTech/blob/main/payment_funnel_conversion.png)
+![Data Model](https://github.com/hoomanv3xo/Payment-Funnel-Analysis-SaaS_FinTech/blob/main/payment_error_context.png)
+![Data Model](https://github.com/hoomanv3xo/Payment-Funnel-Analysis-SaaS_FinTech/blob/main/payment_revenue_exposure.png)
 
 ## Next Steps:
 1. Investigate the Submitted→Success gap as a payments-operations issue — likely causes include card declines, gateway timeouts, or fraud verification failures.
