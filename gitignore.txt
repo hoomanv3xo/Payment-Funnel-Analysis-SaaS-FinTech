@@ -1,12 +1,4 @@
-# generated chart outputs (reproducible via python/funnel_analysis_1000.py)
-*.png
-!README_assets/*.png
-
-# jupyter
 .ipynb_checkpoints/
+data/*.csv
+.env
 __pycache__/
-*.pyc
-
-# os/editor cruft
-.DS_Store
-.vscode/
