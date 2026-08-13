@@ -18,7 +18,7 @@ The business needs to understand:
 * Whether failures are customer or payment-provider related.
 * Which subscriptions need follow-up.
 * How much revenue is at risk.
-* 
+
 ![Data Model](https://github.com/hoomanv3xo/Payment-Funnel-Analysis-SaaS_FinTech/blob/main/data model.png).
 ![Data Model](https://github.com/hoomanv3xo/Payment-Funnel-Analysis-SaaS_FinTech/blob/main/payment funnel stages.png).
 
