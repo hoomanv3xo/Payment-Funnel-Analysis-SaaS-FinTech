@@ -23,7 +23,6 @@ The business needs to understand:
 
 ![Payment Funnel Stages](https://raw.githubusercontent.com/hoomanv3xo/Payment-Funnel-Analysis-SaaS_FinTech/main/payment%20funnel%20stages.png)
 
-
 ## Methodology
 
 `Complete` is used as the final conversion event because it confirms the payment was completed internally.
