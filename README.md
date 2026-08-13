@@ -19,8 +19,9 @@ The business needs to understand:
 * Which subscriptions need follow-up.
 * How much revenue is at risk.
 
-![Data Model](https://github.com/hoomanv3xo/Payment-Funnel-Analysis-SaaS_FinTech/blob/main/data model.png).
-![Data Model](https://github.com/hoomanv3xo/Payment-Funnel-Analysis-SaaS_FinTech/blob/main/payment funnel stages.png).
+![Data Model](https://raw.githubusercontent.com/hoomanv3xo/Payment-Funnel-Analysis-SaaS_FinTech/main/data%20model.png)
+
+![Payment Funnel Stages](https://raw.githubusercontent.com/hoomanv3xo/Payment-Funnel-Analysis-SaaS_FinTech/main/payment%20funnel%20stages.png)
 
 
 ## Methodology
