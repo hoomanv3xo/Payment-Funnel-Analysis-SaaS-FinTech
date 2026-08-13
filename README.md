@@ -18,6 +18,9 @@ The business needs to understand:
 * Whether failures are customer or payment-provider related.
 * Which subscriptions need follow-up.
 * How much revenue is at risk.
+* 
+![Data Model](https://github.com/hoomanv3xo/Payment-Funnel-Analysis-SaaS_FinTech/blob/main/data model.png)
+
 
 ## Methodology
 
@@ -35,7 +38,7 @@ For reporting, use `Subscription_ID` to track each customer journey and sort eve
 
 Do not treat status numbers as a simple ranking because customers can retry, move backward, or encounter errors at different stages.
 
-## Skills Demonstrated
+## Skills 
 
 * **SQL:** CTEs, joins, CASE statements, aggregates
 * **Python:** Pandas, Matplotlib, NumPy, functions, funnel analysis, statistics
@@ -89,7 +92,7 @@ Use different follow-up actions based on the customer's last stage:
 
 ![Data Model](https://github.com/hoomanv3xo/Payment-Funnel-Analysis-SaaS_FinTech/blob/main/payment_funnel_conversion.png)
 ![Data Model](https://github.com/hoomanv3xo/Payment-Funnel-Analysis-SaaS_FinTech/blob/main/payment_error_context.png)
-![Data Model](https://github.com/hoomanv3xo/Payment-Funnel-Analysis-SaaS_FinTech/blob/main/payment_revenue_exposure.png)
+
 
 ## Next Steps:
 1. Investigate the Submitted→Success gap as a payments-operations issue — likely causes include card declines, gateway timeouts, or fraud verification failures.
