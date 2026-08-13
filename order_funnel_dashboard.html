@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Payment Funnel Dashboard</title>
+  <style>
+    :root { --ink:#16222e; --muted:#667585; --paper:#f5f7fb; --surface:#fff; --line:#dbe3ec; --navy:#153d65; --blue:#3075bd; --aqua:#19a7a0; --orange:#e79432; --red:#cc5151; --shadow:0 10px 28px rgba(22,34,46,.08); }
+    * { box-sizing:border-box; }
+    body { margin:0; background:var(--paper); color:var(--ink); font-family:Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif; }
+    .shell { max-width:1180px; margin:auto; padding:34px 24px 48px; }
+    .eyebrow { color:var(--aqua); font-weight:700; font-size:.76rem; letter-spacing:.11em; text-transform:uppercase; }
+    h1 { margin:7px 0 7px; font-size:clamp(1.85rem,4vw,3rem); line-height:1.08; letter-spacing:-.035em; }
+    .subtitle { max-width:790px; margin:0 0 27px; color:var(--muted); font-size:1.05rem; line-height:1.55; }
+    .metrics { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-bottom:27px; }
+    .metric { background:var(--surface); border:1px solid var(--line); border-radius:13px; padding:17px; box-shadow:var(--shadow); }
+    .metric .label { color:var(--muted); font-size:.83rem; }
+    .metric .value { font-size:1.85rem; font-weight:750; letter-spacing:-.045em; margin:7px 0 4px; }
+    .metric .detail { color:var(--muted); font-size:.78rem; line-height:1.35; }
+    .layout { display:grid; grid-template-columns:1.32fr .9fr; gap:18px; }
+    section { background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:23px; box-shadow:var(--shadow); }
+    section + section { margin-top:18px; }
+    h2 { margin:0 0 5px; font-size:1.08rem; letter-spacing:-.015em; }
+    .section-note { margin:0 0 20px; color:var(--muted); font-size:.85rem; line-height:1.45; }
+    .stage { display:grid; grid-template-columns:156px 1fr 70px; align-items:center; gap:12px; margin:15px 0; }
+    .stage-label { font-size:.88rem; font-weight:650; }
+    .bar-track { height:26px; background:#eaf0f6; overflow:hidden; border-radius:5px; }
+    .bar { height:100%; display:flex; align-items:center; padding-left:9px; background:linear-gradient(90deg,var(--navy),var(--blue)); color:#fff; font-size:.72rem; font-weight:700; min-width:50px; transition:width .3s ease; }
+    .bar.success { background:linear-gradient(90deg,#13716e,var(--aqua)); }
+    .stage-value { text-align:right; font-size:.83rem; font-variant-numeric:tabular-nums; color:var(--muted); }
+    .stage-value strong { color:var(--ink); }
+    .callout { display:flex; align-items:flex-start; gap:11px; background:#eef8f7; border-left:4px solid var(--aqua); margin-top:22px; padding:13px 14px; color:#235d5a; font-size:.86rem; line-height:1.42; }
+    .dot { flex:none; width:9px; height:9px; border-radius:50%; background:var(--aqua); margin-top:5px; }
+    .issue { padding:14px 0; border-bottom:1px solid var(--line); }
+    .issue:last-child { border-bottom:0; padding-bottom:0; }
+    .issue-head { display:flex; gap:10px; justify-content:space-between; align-items:baseline; }
+    .issue-title { font-weight:700; font-size:.9rem; }
+    .tag { white-space:nowrap; padding:3px 7px; border-radius:999px; font-size:.7rem; font-weight:700; }
+    .tag.high { background:#feeeee; color:#a73737; } .tag.medium { background:#fff4e6; color:#9b5d0e; } .tag.data { background:#eef1f5; color:#4b5b6a; }
+    .issue p { margin:6px 0 0; color:var(--muted); font-size:.82rem; line-height:1.45; }
+    .legend { display:flex; flex-wrap:wrap; gap:15px; margin-top:18px; color:var(--muted); font-size:.77rem; }
+    .legend span::before { content:""; display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:6px; background:var(--blue); } .legend .ok::before { background:var(--aqua); }
+    .table-wrap { overflow-x:auto; }
+    table { width:100%; border-collapse:collapse; font-size:.84rem; }
+    th { color:var(--muted); font-size:.73rem; letter-spacing:.04em; text-transform:uppercase; font-weight:700; text-align:left; padding:0 8px 10px; }
+    td { border-top:1px solid var(--line); padding:11px 8px; } td.num { text-align:right; font-variant-numeric:tabular-nums; }
+    .money { font-weight:700; }
+    .recommendations { display:grid; grid-template-columns:repeat(3,1fr); gap:13px; }
+    .rec { padding:15px; border:1px solid var(--line); border-radius:11px; }
+    .rec-number { color:var(--blue); font-weight:800; font-size:.75rem; letter-spacing:.06em; }
+    .rec h3 { margin:7px 0 5px; font-size:.92rem; }
+    .rec p { margin:0; color:var(--muted); font-size:.81rem; line-height:1.45; }
+    footer { color:var(--muted); font-size:.73rem; line-height:1.45; margin-top:22px; }
+    @media (max-width:820px) { .metrics { grid-template-columns:repeat(2,1fr); } .layout { grid-template-columns:1fr; } .recommendations { grid-template-columns:1fr; } }
+    @media (max-width:480px) { .shell { padding:24px 15px; } .metrics { grid-template-columns:1fr; } section { padding:17px; } .stage { grid-template-columns:104px 1fr 47px; gap:7px; } .stage-label { font-size:.75rem; } .stage-value { font-size:.74rem; } }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <div class="eyebrow">Finance &amp; product analytics</div>
+    <h1>Payment funnel health</h1>
+    <p class="subtitle">A subscription is converted only when the company-side payment process reaches <strong>Complete</strong>. This dashboard follows 12 subscriptions with payment-status log activity and preserves retries and status regressions.</p>
+
+    <div class="metrics" aria-label="Key payment funnel metrics">
+      <div class="metric"><div class="label">Conversion to complete</div><div class="value">33.3%</div><div class="detail">4 of 12 payment-widget opens</div></div>
+      <div class="metric"><div class="label">Largest funnel loss</div><div class="value">33.3 pts</div><div class="detail">Open → payment entered</div></div>
+      <div class="metric"><div class="label">Known unpaid exposure</div><div class="value">$168.5k</div><div class="detail">14 of 26 known-status subscriptions</div></div>
+      <div class="metric"><div class="label">Success not completed</div><div class="value">2 of 6</div><div class="detail">Processor success missing internal completion</div></div>
+    </div>
+
+    <div class="layout">
+      <section aria-labelledby="funnel-heading">
+        <h2 id="funnel-heading">Milestone funnel</h2>
+        <p class="section-note">Each subscription is counted once at every milestone it ever reached. This avoids losing prior success when a later event regresses.</p>
+        <div class="stage"><div class="stage-label">Widget opened</div><div class="bar-track"><div class="bar" style="width:100%">12 subscriptions</div></div><div class="stage-value"><strong>100.0%</strong></div></div>
+        <div class="stage"><div class="stage-label">Payment entered</div><div class="bar-track"><div class="bar" style="width:66.7%">8</div></div><div class="stage-value"><strong>66.7%</strong></div></div>
+        <div class="stage"><div class="stage-label">Payment submitted</div><div class="bar-track"><div class="bar" style="width:58.3%">7</div></div><div class="stage-value"><strong>58.3%</strong></div></div>
+        <div class="stage"><div class="stage-label">Payment success</div><div class="bar-track"><div class="bar success" style="width:50%">6</div></div><div class="stage-value"><strong>50.0%</strong></div></div>
+        <div class="stage"><div class="stage-label">Complete</div><div class="bar-track"><div class="bar success" style="width:33.3%">4</div></div><div class="stage-value"><strong>33.3%</strong></div></div>
+        <div class="legend"><span>In-progress milestone</span><span class="ok">Processor/internal success milestone</span></div>
+        <div class="callout"><span class="dot" aria-hidden="true"></span><div><strong>Priority friction point:</strong> four users opened the widget but never entered payment information. Investigate portal load, mobile rendering, session expiry, payment-method availability, and CTA reliability.</div></div>
+      </section>
+
+      <section aria-labelledby="issues-heading">
+        <h2 id="issues-heading">Exceptions requiring action</h2>
+        <p class="section-note">Error-stage attribution is provisional because the log lacks error source and response codes.</p>
+        <div class="issue"><div class="issue-head"><span class="issue-title">Success → complete reconciliation</span><span class="tag high">High priority</span></div><p>2 of 6 processor successes have no internal completion. Alert after 15 minutes and reconcile before customer outreach.</p></div>
+        <div class="issue"><div class="issue-head"><span class="issue-title">Post-submit failures</span><span class="tag medium">Investigate</span></div><p>3 errors followed payment submission (3 of 7 submitters). They are consistent with vendor-stage failures, but cannot be confirmed without vendor response codes.</p></div>
+        <div class="issue"><div class="issue-head"><span class="issue-title">Sequence anomalies</span><span class="tag data">Data quality</span></div><p>Two errors follow payment success or complete, and one journey is out of order. Retain these as monitoring signals rather than overwriting history.</p></div>
+      </section>
+    </div>
+
+    <section aria-labelledby="exposure-heading">
+      <h2 id="exposure-heading">Subscription snapshot and revenue exposure</h2>
+      <p class="section-note">Revenue is associated subscription revenue in the source data, not confirmed collected cash.</p>
+      <div class="table-wrap"><table><thead><tr><th>Current payment-status group</th><th class="num">Subscriptions</th><th class="num">Associated revenue</th><th>Interpretation</th></tr></thead><tbody>
+        <tr><td>Complete</td><td class="num">12</td><td class="num money">$104,000</td><td>Converted in the subscription snapshot</td></tr>
+        <tr><td>Known status, not complete</td><td class="num">14</td><td class="num money">$168,500</td><td>Actionable known-status unpaid exposure</td></tr>
+        <tr><td>Null current status</td><td class="num">24</td><td class="num money">$185,000</td><td>Classify before reporting overall unpaid rate</td></tr>
+        <tr><td><strong>All subscriptions</strong></td><td class="num"><strong>50</strong></td><td class="num money"><strong>$457,500</strong></td><td>Source snapshot total</td></tr>
+      </tbody></table></div>
+    </section>
+
+    <section aria-labelledby="recommend-heading">
+      <h2 id="recommend-heading">Recommended next actions</h2>
+      <p class="section-note">Focus first on the observed bottleneck and the risk of incorrectly treating paid customers as unpaid.</p>
+      <div class="recommendations">
+        <article class="rec"><div class="rec-number">01 · INSTRUMENT</div><h3>Capture the real failure mode</h3><p>Add payment attempt ID, error source, error code, vendor transaction ID, portal load events, and form-validation events.</p></article>
+        <article class="rec"><div class="rec-number">02 · RECONCILE</div><h3>Close the success gap</h3><p>Auto-retry or queue a reconciliation when a payment succeeds but the internal subscription has not completed within 15 minutes.</p></article>
+        <article class="rec"><div class="rec-number">03 · RECOVER</div><h3>Use stage-specific outreach</h3><p>Send a direct payment link for pre-submit abandonment; use correction guidance for validation issues and clear status messaging for processor errors.</p></article>
+      </div>
+    </section>
+    <footer>Source: supplied Subscriptions, Payment_Status_Log, and Payment_Status_Definitions CSV files. Funnel is based on 50 status movements across 12 subscriptions; snapshot totals cover 50 subscriptions.</footer>
+  </main>
+</body>
+</html>
