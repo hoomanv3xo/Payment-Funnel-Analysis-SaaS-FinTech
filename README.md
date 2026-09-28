@@ -86,11 +86,11 @@ Based on `Subscriptions.csv` (N = 50 total subscriptions, total potential revenu
 
 **Subscription status snapshot and revenue breakdown**
 
-![Subscription status snapshot (N=50) and revenue breakdown of realized vs. lost pipeline](images/payment_funnel_charts.png)
+![Subscription status snapshot (N=50) and revenue breakdown of realized vs. lost pipeline](payment_funnel_charts.png)
 
 **Step-by-step payment funnel conversion flow**
 
-![Step-by-step payment funnel showing subscriptions and revenue at each stage, from plan selection (50) to conversion (12)](images/sequential_funnel_flow.png)
+![Step-by-step payment funnel showing subscriptions and revenue at each stage, from plan selection (50) to conversion (12)](sequential_funnel_flow.png)
 
 ### 3. Major Friction Points Identified
 
