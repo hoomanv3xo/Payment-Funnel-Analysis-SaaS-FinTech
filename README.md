@@ -82,7 +82,17 @@ Based on `Subscriptions.csv` (N = 50 total subscriptions, total potential revenu
 | Payment Error | 0 | 4 | 8.0% | $34,500.00 | Blocked by Error |
 | **Total** | — | **50** | **100.0%** | **$457,500.00** | **$353,500 Unconverted** |
 
-### 2. Major Friction Points Identified
+### 2. Visualizations
+
+**Subscription status snapshot and revenue breakdown**
+
+![Subscription status snapshot (N=50) and revenue breakdown of realized vs. lost pipeline](images/payment_funnel_charts.png)
+
+**Step-by-step payment funnel conversion flow**
+
+![Step-by-step payment funnel showing subscriptions and revenue at each stage, from plan selection (50) to conversion (12)](images/sequential_funnel_flow.png)
+
+### 3. Major Friction Points Identified
 
 - **Uninitiated checkout drop-off (48% of subscriptions):** Nearly half of users select a paid tier but never open the payment portal (`Status_ID = NaN`). This indicates a lack of immediate redirect after plan selection or missing checkout calls-to-action (CTAs).
 - **Widget abandonment (14% drop-off):** Customers open the modal (Status 1) but exit before entering payment details. Friction triggers include unexpected tax/fee additions or mandatory billing address fields.
@@ -103,4 +113,4 @@ Based on `Subscriptions.csv` (N = 50 total subscriptions, total potential revenu
 
 - [ ] **A/B test checkout UX:** Test a 1-step streamlined payment modal against the current multi-step entry form.
 - [ ] **Implement granular error logging:** Expand Status 0 definitions in `payment_status_log` to store exact gateway response codes (e.g., `INSUFFICIENT_FUNDS`, `EXPIRED_CARD`, `GATEWAY_TIMEOUT`).
-- [ ] **Set up real-time monitoring:** Build a Looker/Tableau alert das
+- [ ] **Set up real-time monitoring:** Build a Looker/Tableau alert dashboard notifying engineering whenever vendor payment error rates exceed 5% in a 1-hour rolling window.
