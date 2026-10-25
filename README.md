@@ -1,4 +1,4 @@
-# Payment Funnel Analysis: SaaS Fintech & Conversion Optimization
+# Payment Funnel Analysis: SaaS Fintech
 
 ## Table of Contents
 
